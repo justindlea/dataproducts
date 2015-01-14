@@ -1,0 +1,40 @@
+Predicting MPG
+========================================================
+author: J Lea
+date: 1/13/2015
+
+Motivation
+========================================================
+
+Car Manufacturers need a quick and simple way to estimate the expected gas 
+milage (MPG) of a vehicle they are planning to build. Our app quickly delivers 
+this estimate based on the following criteria
+
+- Number of Cylinders vehicle is expected to have
+- The expected weight of the vehicle (in tons)
+
+Method
+========================================================
+Create linear model using mtcars dataset
+
+```{r}
+model<-lm(mpg ~ cyl + wt, data=mtcars)
+anova(model)
+```
+
+Use Case
+========================================================
+Auto maker is looking to estimate the difference in MPG based on different
+engine sizes
+
+```{r}
+predict(model, data.frame(cyl=4, wt=3))
+predict(model, data.frame(cyl=6, wt=3))
+predict(model, data.frame(cyl=8, wt=3))
+```
+
+Implication
+========================================================
+The application hosted [here](https://justindlea.shinyapps.io/dataproducts/) can be used by automakers across the globe to get a 
+rough estimate of how changes to the weight and engine size of their prospective
+vehicles will affect gas mileage
